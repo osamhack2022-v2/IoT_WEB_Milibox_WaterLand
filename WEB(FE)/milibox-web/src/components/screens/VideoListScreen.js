@@ -5,10 +5,9 @@ import Button from '@mui/material/Button';
 import Drawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
-import CircularProgress from '@mui/material/CircularProgress';
+import ListSubheader from '@mui/material/ListSubheader';
 
 const VideoListScreen = () => {
   return (
@@ -27,32 +26,56 @@ const VideoListScreen = () => {
         <Toolbar />
         <Box sx={{ width: 300, overflow: 'auto' }}>
           <List>
-            <ListItem>
-              <ListItemButton>
-                <ListItemText>블랙박스 영상 목록</ListItemText>
-              </ListItemButton>
-            </ListItem>
-            <ListItem>
-              <ListItemButton selected>
-                <ListItemText>영상 복호화 신청 목록</ListItemText>
-              </ListItemButton>
-            </ListItem>
+            <ListItemButton sx={{ m: 1 }} selected>
+              <ListItemText>블랙박스 영상 목록</ListItemText>
+            </ListItemButton>
+            <ListItemButton sx={{ m: 1 }}>
+              <ListItemText>영상 복호화 신청 목록</ListItemText>
+            </ListItemButton>
           </List>
         </Box>
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <Toolbar />
-        <Typography variant="h4">블랙박스 영상 목록</Typography>
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            p: 30,
-          }}
+        <Typography variant="h5">블랙박스 영상 목록</Typography>
+        <List
+          sx={{ mt: 3 }}
+          subheader={
+            <ListSubheader>
+              <Box sx={{ display: 'flex' }}>
+                <Box sx={{ width: 400 }}>녹화 일시</Box>
+                <Box sx={{ width: 400 }}>업로드 일시</Box>
+                <Box sx={{ width: 400 }}>파일 크기</Box>
+              </Box>
+            </ListSubheader>
+          }
         >
-          <CircularProgress />
-        </Box>
+          <ListItemButton>
+            <Box sx={{ width: 400 }}>2022년 1월 31일 15:03:40</Box>
+            <Box sx={{ width: 400 }}>2022년 2월 2일 14:02:06</Box>
+            <Box sx={{ width: 400 }}>1.2MB</Box>
+          </ListItemButton>
+          <ListItemButton>
+            <Box sx={{ width: 400 }}>2022년 1월 31일 15:03:40</Box>
+            <Box sx={{ width: 400 }}>2022년 2월 2일 14:02:06</Box>
+            <Box sx={{ width: 400 }}>1.2MB</Box>
+          </ListItemButton>
+          <ListItemButton>
+            <Box sx={{ width: 400 }}>2022년 1월 31일 15:03:40</Box>
+            <Box sx={{ width: 400 }}>2022년 2월 2일 14:02:06</Box>
+            <Box sx={{ width: 400 }}>1.2MB</Box>
+          </ListItemButton>
+          <ListItemButton>
+            <Box sx={{ width: 400 }}>2022년 1월 31일 15:03:40</Box>
+            <Box sx={{ width: 400 }}>2022년 2월 2일 14:02:06</Box>
+            <Box sx={{ width: 400 }}>1.2MB</Box>
+          </ListItemButton>
+          <ListItemButton>
+            <Box sx={{ width: 400 }}>2022년 1월 31일 15:03:40</Box>
+            <Box sx={{ width: 400 }}>2022년 2월 2일 14:02:06</Box>
+            <Box sx={{ width: 400 }}>1.2MB</Box>
+          </ListItemButton>
+        </List>
       </Box>
     </Box>
   );
