@@ -1,3 +1,4 @@
+import Button from '@mui/material/Button';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
@@ -6,6 +7,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListSubheader from '@mui/material/ListSubheader';
 import AppBar from '../common/AppBar';
 import SideBar from '../common/SideBar';
+import AddIcon from '@mui/icons-material/Add';
 
 const VideoListScreen = () => {
   return (
@@ -54,6 +56,16 @@ const VideoListScreen = () => {
           </ListItemButton>
         </List>
       </Box>
+      <Button
+        variant="contained"
+        size="large"
+        startIcon={<AddIcon />}
+        component="label"
+        sx={{ position: 'absolute', bottom: 30, right: 30 }}
+      >
+        영상 업로드
+        <input hidden accept="video/*" type="file" />
+      </Button>
     </Box>
   );
 };
