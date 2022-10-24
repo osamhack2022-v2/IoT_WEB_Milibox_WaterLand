@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
+import { Link } from 'react-router-dom';
 
 const SideBar = () => {
   return (
@@ -11,10 +12,10 @@ const SideBar = () => {
       <Toolbar />
       <Box sx={{ width: 300, overflow: 'auto' }}>
         <List>
-          <ListItemButton sx={{ m: 1 }} selected>
+          <ListItemButton component={Link} to="/" sx={{ m: 1 }} selected>
             <ListItemText>블랙박스 영상 목록</ListItemText>
           </ListItemButton>
-          <ListItemButton sx={{ m: 1 }}>
+          <ListItemButton component={Link} to="/application" sx={{ m: 1 }}>
             <ListItemText>영상 복호화 신청 목록</ListItemText>
           </ListItemButton>
         </List>

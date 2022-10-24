@@ -8,6 +8,7 @@ import ListSubheader from '@mui/material/ListSubheader';
 import AppBar from '../common/AppBar';
 import SideBar from '../common/SideBar';
 import AddIcon from '@mui/icons-material/Add';
+import { Link } from 'react-router-dom';
 
 const VideoListScreen = () => {
   return (
@@ -29,7 +30,7 @@ const VideoListScreen = () => {
             </ListSubheader>
           }
         >
-          <ListItemButton>
+          <ListItemButton component={Link} to="/videos/3">
             <Box sx={{ width: 400 }}>2022년 1월 31일 15:03:40</Box>
             <Box sx={{ width: 400 }}>2022년 2월 2일 14:02:06</Box>
             <Box sx={{ width: 400 }}>1.2MB</Box>
