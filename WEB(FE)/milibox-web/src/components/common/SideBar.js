@@ -16,7 +16,7 @@ const SideBar = () => {
             <ListItemText>블랙박스 영상 목록</ListItemText>
           </ListItemButton>
           <ListItemButton component={Link} to="/application" sx={{ m: 1 }}>
-            <ListItemText>영상 복호화 신청 목록</ListItemText>
+            <ListItemText>영상 반출 신청 목록</ListItemText>
           </ListItemButton>
         </List>
       </Box>
