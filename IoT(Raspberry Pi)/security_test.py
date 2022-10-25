@@ -1,4 +1,4 @@
-from security import *
+from BlackBox_Device.security import *
 from server import *
 
 make_key()

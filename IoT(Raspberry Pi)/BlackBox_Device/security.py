@@ -19,12 +19,6 @@ def encrypt_file(file_path):
     # 영상파일 열기
     with open(file_path, 'rb') as file:
         original = file.read()
-
-    # 영상파일 암호화
-    encrypted = f.encrypt(original)
-    
-    with open(file_path + '.enc', 'wb') as encrypted_file:
-        encrypted_file.write(encrypted)
     
     # 서버의 공개키 열기
     with open("public_key.pem", "rb") as key_file:
@@ -32,9 +26,9 @@ def encrypt_file(file_path):
             key_file.read(),
             backend=default_backend()
         )
-
+  
     # 영상 암호화에 사용한 대칭키를 공개키로 암호화
-    encrypted = public_key.encrypt(
+    encrypted_symmetric_key = public_key.encrypt(
         symmetric_key,
         padding.OAEP(
             mgf=padding.MGF1(algorithm=hashes.SHA256()),
@@ -43,8 +37,15 @@ def encrypt_file(file_path):
         )
     )
 
-    with open(file_path + '.enckey', 'wb') as encrypted_file:
-        encrypted_file.write(encrypted)
+    # 영상파일 암호화
+    encrypted_content = f.encrypt(original)
+    
+    with open(file_path + '.milibox', 'wb') as encrypted_file:
+        encrypted_file.write(b'This is a recorded video file encrypted on MILIBOX.\n')
+        encrypted_file.write(b'-----BEGIN ENCRYPTED SYMMETRIC KEY-----\n')
+        encrypted_file.write(encrypted_symmetric_key)
+        encrypted_file.write(b'\n-----END ENCRYPTED SYMMETRIC KEY-----\n')
+        encrypted_file.write(encrypted_content)
 
     # 영상 파일 삭제
     os.remove(file_path)

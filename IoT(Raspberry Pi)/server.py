@@ -6,6 +6,9 @@ from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.asymmetric import padding
 
+KEY_BEGIN = b'-----BEGIN ENCRYPTED SYMMETRIC KEY-----\n'
+KEY_END = b'\n-----END ENCRYPTED SYMMETRIC KEY-----\n'
+
 def make_key():
     private_key = rsa.generate_private_key(
             public_exponent=65537,
@@ -44,12 +47,11 @@ def decrypt_file(file_path):
         )
 
     # 암호화된 영상파일 열기
-    with open(file_path + '.enc', 'rb') as file:
-        encrypted = file.read()
-
-    # 암호화된 대칭키파일 열기
-    with open(file_path + '.enckey', 'rb') as file:
-        encrypted_symmetric_key = file.read()
+    with open(file_path + '.milibox', 'rb') as file:
+        # 암호화된 대칭키와 암호화된 영상파일 분리
+        temp = file.read().split(KEY_END)
+        encrypted_symmetric_key = temp[0].split(KEY_BEGIN)[1]
+        encrypted_content = temp[1]
 
     # 암호화된 대칭키 복호화
     symmetric_key = private_key.decrypt(
@@ -63,7 +65,7 @@ def decrypt_file(file_path):
 
     # 대칭키로 암호화된 영상파일 복호화
     f = Fernet(symmetric_key)
-    decrypted = f.decrypt(encrypted)
+    decrypted = f.decrypt(encrypted_content)
     
-    with open(file_path + '', 'wb') as file:
+    with open(file_path + '.h264', 'wb') as file:
         file.write(decrypted)
